@@ -40,13 +40,19 @@ namespace ConsumirLogin
             var response = await cliente.PostAsync("Usuarios/login", content);
             string jsonResponse = await response.Content.ReadAsStringAsync();
 
-            var result = JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonResponse);
-
             if (response.IsSuccessStatusCode)
             {
+                var result = JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonResponse);
                 lblResultado.Text = $"Login exitoso de {result["nombre"]} {result["apellido"]}";
                 lblResultado.Visible = true;
                 lblResultado.ForeColor = Color.Green;
+                lblResultado.Left = (this.panel1.Width - lblResultado.Size.Width) / 2;
+            }
+            else
+            {
+                lblResultado.Text = $"Correo o contraseña incorrecta";
+                lblResultado.Visible = true;
+                lblResultado.ForeColor = Color.Red;
                 lblResultado.Left = (this.panel1.Width - lblResultado.Size.Width) / 2;
             }
         }

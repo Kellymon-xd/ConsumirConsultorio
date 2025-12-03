@@ -41,10 +41,5 @@ namespace ConsumirLogin
 
             dgvUsuarios.DataSource = usuarios;
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

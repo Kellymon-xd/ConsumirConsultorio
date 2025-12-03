@@ -78,6 +78,7 @@
     <Compile Include="FrmRegistrar.Designer.cs">
       <DependentUpon>FrmRegistrar.cs</DependentUpon>
     </Compile>
+    <Compile Include="HttpClientExtensions.cs" />
     <Compile Include="Models\ActividadUsuario.cs" />
     <Compile Include="Models\Especialidad.cs" />
     <Compile Include="Models\Medico.cs" />

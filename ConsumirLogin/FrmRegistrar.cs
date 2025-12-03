@@ -1,4 +1,5 @@
 ﻿using ApiConsultorio.DTOs;
+using ConsumirConsultorio.DTOs.Usuarios;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace ConsumirLogin
             cliente.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
+            this.cboRol.DropDown += new System.EventHandler(this.cboRol_DropDown);
         }
 
         private async void btnRegistrar_Click(object sender, EventArgs e)
@@ -70,5 +72,28 @@ namespace ConsumirLogin
                 }
             }
         }
+
+        private async void cboRol_DropDown(object sender, EventArgs e)
+        {
+            // Para evitar cargar dos veces si ya tiene datos
+            if (cboRol.DataSource != null)
+                return;
+
+            var response = await cliente.GetAsync("Rol");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("No se pudieron obtener los roles desde la API.");
+                return;
+            }
+
+            var json = await response.Content.ReadAsStringAsync();
+            var roles = JsonConvert.DeserializeObject<List<RolDTO>>(json);
+
+            cboRol.DataSource = roles;
+            cboRol.DisplayMember = "Descripcion_Rol";
+            cboRol.ValueMember = "Id_Rol";
+        }
+
     }
 }

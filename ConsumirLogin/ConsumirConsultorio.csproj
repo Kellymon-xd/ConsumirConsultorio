@@ -53,6 +53,7 @@
     <Compile Include="DTOs\Usuarios\CrearUsuarioDTO.cs" />
     <Compile Include="DTOs\Usuarios\LoginDTO.cs" />
     <Compile Include="DTOs\Usuarios\MostrarUsuarioDTO.cs" />
+    <Compile Include="DTOs\Usuarios\RolDTO.cs" />
     <Compile Include="FrmGetUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>

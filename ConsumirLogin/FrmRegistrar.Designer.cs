@@ -39,13 +39,13 @@
             this.txtPass = new System.Windows.Forms.TextBox();
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblResultado = new System.Windows.Forms.Label();
-            this.lblCedula = new System.Windows.Forms.Label();
-            this.txtCedula = new System.Windows.Forms.TextBox();
+            this.cboRol = new System.Windows.Forms.ComboBox();
+            this.lblRol = new System.Windows.Forms.Label();
             this.lblTelefono = new System.Windows.Forms.Label();
             this.txtTelefono = new System.Windows.Forms.TextBox();
-            this.lblRol = new System.Windows.Forms.Label();
-            this.cboRol = new System.Windows.Forms.ComboBox();
+            this.lblCedula = new System.Windows.Forms.Label();
+            this.txtCedula = new System.Windows.Forms.TextBox();
+            this.lblResultado = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -166,34 +166,24 @@
             this.panel1.Size = new System.Drawing.Size(647, 342);
             this.panel1.TabIndex = 10;
             // 
-            // lblResultado
+            // cboRol
             // 
-            this.lblResultado.AutoSize = true;
-            this.lblResultado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblResultado.Location = new System.Drawing.Point(284, 300);
-            this.lblResultado.Name = "lblResultado";
-            this.lblResultado.Size = new System.Drawing.Size(51, 20);
-            this.lblResultado.TabIndex = 10;
-            this.lblResultado.Text = "label6";
-            this.lblResultado.Visible = false;
+            this.cboRol.FormattingEnabled = true;
+            this.cboRol.Location = new System.Drawing.Point(119, 205);
+            this.cboRol.Name = "cboRol";
+            this.cboRol.Size = new System.Drawing.Size(121, 21);
+            this.cboRol.TabIndex = 16;
+           // this.cboRol.SelectedIndexChanged += new System.EventHandler(this.cboRol_SelectedIndexChanged);
             // 
-            // lblCedula
+            // lblRol
             // 
-            this.lblCedula.AutoSize = true;
-            this.lblCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCedula.Location = new System.Drawing.Point(20, 151);
-            this.lblCedula.Name = "lblCedula";
-            this.lblCedula.Size = new System.Drawing.Size(80, 25);
-            this.lblCedula.TabIndex = 11;
-            this.lblCedula.Text = "Cedula";
-            // 
-            // txtCedula
-            // 
-            this.txtCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCedula.Location = new System.Drawing.Point(119, 148);
-            this.txtCedula.Name = "txtCedula";
-            this.txtCedula.Size = new System.Drawing.Size(160, 31);
-            this.txtCedula.TabIndex = 12;
+            this.lblRol.AutoSize = true;
+            this.lblRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRol.Location = new System.Drawing.Point(20, 201);
+            this.lblRol.Name = "lblRol";
+            this.lblRol.Size = new System.Drawing.Size(44, 25);
+            this.lblRol.TabIndex = 15;
+            this.lblRol.Text = "Rol";
             // 
             // lblTelefono
             // 
@@ -213,23 +203,34 @@
             this.txtTelefono.Size = new System.Drawing.Size(160, 31);
             this.txtTelefono.TabIndex = 14;
             // 
-            // lblRol
+            // lblCedula
             // 
-            this.lblRol.AutoSize = true;
-            this.lblRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRol.Location = new System.Drawing.Point(20, 201);
-            this.lblRol.Name = "lblRol";
-            this.lblRol.Size = new System.Drawing.Size(44, 25);
-            this.lblRol.TabIndex = 15;
-            this.lblRol.Text = "Rol";
+            this.lblCedula.AutoSize = true;
+            this.lblCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCedula.Location = new System.Drawing.Point(20, 151);
+            this.lblCedula.Name = "lblCedula";
+            this.lblCedula.Size = new System.Drawing.Size(80, 25);
+            this.lblCedula.TabIndex = 11;
+            this.lblCedula.Text = "Cedula";
             // 
-            // cboRol
+            // txtCedula
             // 
-            this.cboRol.FormattingEnabled = true;
-            this.cboRol.Location = new System.Drawing.Point(119, 205);
-            this.cboRol.Name = "cboRol";
-            this.cboRol.Size = new System.Drawing.Size(121, 21);
-            this.cboRol.TabIndex = 16;
+            this.txtCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCedula.Location = new System.Drawing.Point(119, 148);
+            this.txtCedula.Name = "txtCedula";
+            this.txtCedula.Size = new System.Drawing.Size(160, 31);
+            this.txtCedula.TabIndex = 12;
+            // 
+            // lblResultado
+            // 
+            this.lblResultado.AutoSize = true;
+            this.lblResultado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResultado.Location = new System.Drawing.Point(284, 300);
+            this.lblResultado.Name = "lblResultado";
+            this.lblResultado.Size = new System.Drawing.Size(51, 20);
+            this.lblResultado.TabIndex = 10;
+            this.lblResultado.Text = "label6";
+            this.lblResultado.Visible = false;
             // 
             // FrmRegistrar
             // 

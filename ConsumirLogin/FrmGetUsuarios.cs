@@ -39,12 +39,63 @@ namespace ConsumirLogin
             string json = await response.Content.ReadAsStringAsync();
             var usuarios = JsonConvert.DeserializeObject<List<MostrarUsuarioDTO>>(json);
 
+            dgvUsuarios.AutoGenerateColumns = true;
             dgvUsuarios.DataSource = usuarios;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+     
+
+
+        private async void btnEdit_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtId.Text))
+            {
+                MessageBox.Show("Debe seleccionar un usuario para editar.");
+                return;
+            }
+
+            var update = new ActualizarUsuarioDTO
+            {
+                Nombre = txtNombre.Text,
+                Apellido = txtApellido.Text,
+                Email = txtEmail.Text,
+                Telefono = string.IsNullOrWhiteSpace(txtTelefono.Text)
+                            ? null  // NO tocar → API mantiene el valor anterior
+                            : txtTelefono.Text
+            };
+
+            string json = JsonConvert.SerializeObject(update);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await cliente.PutAsync($"Usuarios/{txtId.Text}", content);
+
+            if (response.IsSuccessStatusCode)
+                MessageBox.Show("Usuario actualizado.");
+            else
+            {
+                string error = await response.Content.ReadAsStringAsync();
+                MessageBox.Show("Error al actualizar usuario: " + error);
+            }
+        }
+
+        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            txtNombre.Text = dgvUsuarios.Rows[e.RowIndex].Cells["Nombre"].Value.ToString();
+            txtApellido.Text = dgvUsuarios.Rows[e.RowIndex].Cells["Apellido"].Value.ToString();
+            txtEmail.Text = dgvUsuarios.Rows[e.RowIndex].Cells["Email"].Value.ToString();
+            txtCedula.Text = dgvUsuarios.Rows[e.RowIndex].Cells["Cedula"].Value.ToString();
+ 
+
+            chkActivo.Checked = (bool)dgvUsuarios.Rows[e.RowIndex].Cells["Activo"].Value;
+            chkBloqueado.Checked = (bool)dgvUsuarios.Rows[e.RowIndex].Cells["Bloqueado"].Value;
+
+            // Guardamos el ID ocultamente
+            txtId.Text = dgvUsuarios.Rows[e.RowIndex].Cells["Id_Usuario"].Value.ToString();
 
         }
+
+      
     }
 }

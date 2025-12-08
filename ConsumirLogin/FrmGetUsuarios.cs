@@ -136,37 +136,75 @@ namespace ConsumirLogin
             // ------------------------
             // PATCH ACTIVO
             // ------------------------
-            var bodyActivo = JsonConvert.SerializeObject(ckbActivo.Checked);
-            var contenidoActivo = new StringContent(bodyActivo, Encoding.UTF8, "application/json");
+            var bodyActivo = new
+            {
+                activo = ckbActivo.Checked
+            };
+
+            var contenidoActivo = new StringContent(
+                JsonConvert.SerializeObject(bodyActivo),
+                Encoding.UTF8,
+                "application/json"
+            );
 
             var responseActivo = await cliente.PatchAsync(
                 $"Usuarios/{usuarioSeleccionadoId}/activo",
                 contenidoActivo
             );
 
+
             // ------------------------
             // PATCH BLOQUEADO
             // ------------------------
-            var bodyBloq = JsonConvert.SerializeObject(ckbBloqueado.Checked);
-            var contenidoBloq = new StringContent(bodyBloq, Encoding.UTF8, "application/json");
+            var bodyBloq = new
+            {
+                bloqueado = ckbBloqueado.Checked
+            };
+
+            var contenidoBloq = new StringContent(
+                JsonConvert.SerializeObject(bodyBloq),
+                Encoding.UTF8,
+                "application/json"
+            );
 
             var responseBloq = await cliente.PatchAsync(
                 $"Usuarios/{usuarioSeleccionadoId}/bloqueado",
                 contenidoBloq
             );
 
+            bool putOk = responsePut.IsSuccessStatusCode;
 
-            if (responsePut.IsSuccessStatusCode &&
-                responseActivo.IsSuccessStatusCode &&
-                responseBloq.IsSuccessStatusCode)
+            // PATCH puede devolver 200 o 204
+            bool activoOk =
+                responseActivo.StatusCode == System.Net.HttpStatusCode.OK ||
+                responseActivo.StatusCode == System.Net.HttpStatusCode.NoContent;
+
+            bool bloqueadoOk =
+                responseBloq.StatusCode == System.Net.HttpStatusCode.OK ||
+                responseBloq.StatusCode == System.Net.HttpStatusCode.NoContent;
+
+            // ✅ El PUT manda
+            if (putOk)
             {
-                MessageBox.Show("Usuario actualizado correctamente.");
+                MessageBox.Show(
+                    "✅ Usuario actualizado correctamente.",
+                    "Éxito",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+
                 await CargarUsuarios();
             }
             else
             {
-                MessageBox.Show("Error al actualizar usuario.");
+                MessageBox.Show(
+                    "❌ No se pudo actualizar el usuario.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
+
         }
 
         // ------------------------
